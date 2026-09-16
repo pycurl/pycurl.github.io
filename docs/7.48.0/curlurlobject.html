@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CurlUrl Object &#8212; PycURL 7.48.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="_static/documentation_options.js?v=89df543f"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CurlMime Objects" href="mime.html" />
+    <link rel="prev" title="CurlShare Object" href="curlshareobject.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mime.html" title="CurlMime Objects"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="curlshareobject.html" title="CurlShare Object"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PycURL 7.48.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CurlUrl Object</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="curlurl-object">
+<span id="curlurlobject"></span><h1>CurlUrl Object<a class="headerlink" href="#curlurl-object" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycurl.CurlUrl">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">pycurl.</span></span><span class="sig-name descname"><span class="pre">CurlUrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">New</span> <span class="pre">CurlUrl</span> <span class="pre">object</span></span></span><a class="headerlink" href="#pycurl.CurlUrl" title="Link to this definition">¶</a></dt>
+<dd><p>Create a <a class="reference internal" href="#curlurlobject"><span class="std std-ref">CurlUrl Object</span></a> wrapping a libcurl <code class="docutils literal notranslate"><span class="pre">CURLU</span></code> URL handle.</p>
+<p>Without arguments the handle is empty. If <em>url</em> is given it is parsed with
+<code class="docutils literal notranslate"><span class="pre">setpart(UPART_URL,</span> <span class="pre">url,</span> <span class="pre">flags)</span></code>, so <em>flags</em> may be any combination of the
+<code class="docutils literal notranslate"><span class="pre">U_*</span></code> constants.</p>
+<p>The component properties (<code class="docutils literal notranslate"><span class="pre">scheme</span></code>, <code class="docutils literal notranslate"><span class="pre">host</span></code>, <code class="docutils literal notranslate"><span class="pre">port</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">query</span></code>,
+<code class="docutils literal notranslate"><span class="pre">fragment</span></code>, <code class="docutils literal notranslate"><span class="pre">user</span></code>, <code class="docutils literal notranslate"><span class="pre">password</span></code>, <code class="docutils literal notranslate"><span class="pre">options</span></code> and, on libcurl 7.65.0 or
+later, <code class="docutils literal notranslate"><span class="pre">zoneid</span></code>) read and write the URL parts. A getter returns <code class="docutils literal notranslate"><span class="pre">None</span></code> when
+the part is absent. Assigning <code class="docutils literal notranslate"><span class="pre">None</span></code> or using <code class="docutils literal notranslate"><span class="pre">del</span></code> removes it. For control
+over encoding and other flags use <a class="reference internal" href="#pycurl.CurlUrl.getpart" title="pycurl.CurlUrl.getpart"><code class="xref py py-meth docutils literal notranslate"><span class="pre">getpart()</span></code></a> and
+<a class="reference internal" href="#pycurl.CurlUrl.setpart" title="pycurl.CurlUrl.setpart"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setpart()</span></code></a>.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">CurlUrl</span></code> can be passed to a <a class="reference internal" href="curlobject.html#curlobject"><span class="std std-ref">Curl object</span></a> through the
+<code class="docutils literal notranslate"><span class="pre">CURLU</span></code> option.</p>
+<p>Corresponds to <a class="reference external" href="https://curl.se/libcurl/c/curl_url.html">curl_url</a> in libcurl. Requires libcurl 7.62.0 or later.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">pycurl</span><span class="o">.</span><span class="n">CurlUrl</span><span class="p">(</span><span class="s2">&quot;https://example.com/path?a=1&quot;</span><span class="p">)</span>
+<span class="n">u</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;example.org&quot;</span>
+<span class="n">curl</span><span class="o">.</span><span class="n">setopt</span><span class="p">(</span><span class="n">pycurl</span><span class="o">.</span><span class="n">CURLU</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> – an optional URL string to parse into the new handle.</p></li>
+<li><p><strong>flags</strong> (<em>int</em>) – <code class="docutils literal notranslate"><span class="pre">U_*</span></code> flags controlling how <em>url</em> is parsed.</p></li>
+</ul>
+</dd>
+</dl>
+<p>A <code class="docutils literal notranslate"><span class="pre">CurlUrl</span></code> wraps a libcurl <code class="docutils literal notranslate"><span class="pre">CURLU</span></code> handle and exposes libcurl’s URL
+API. It requires libcurl 7.62.0 or later.</p>
+<p>Component getters return <code class="docutils literal notranslate"><span class="pre">None</span></code> when the part is absent, which is how an
+absent part differs from an empty one. By default the properties read and
+write the raw value with no percent-encoding or decoding. Use
+<a class="reference internal" href="#pycurl.CurlUrl.getpart" title="pycurl.CurlUrl.getpart"><code class="xref py py-meth docutils literal notranslate"><span class="pre">getpart()</span></code></a> and <a class="reference internal" href="#pycurl.CurlUrl.setpart" title="pycurl.CurlUrl.setpart"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setpart()</span></code></a>
+with the <code class="docutils literal notranslate"><span class="pre">U_*</span></code> flags for encoding control.</p>
+<p>CurlUrl objects have the following methods:</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycurl.CurlUrl.getpart">
+<span class="sig-name descname"><span class="pre">getpart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span> <span class="pre">or</span> <span class="pre">None</span></span></span><a class="headerlink" href="#pycurl.CurlUrl.getpart" title="Link to this definition">¶</a></dt>
+<dd><p>Return one URL component, or <code class="docutils literal notranslate"><span class="pre">None</span></code> when it is absent.</p>
+<p><em>part</em> is one of the <code class="docutils literal notranslate"><span class="pre">UPART_*</span></code> constants. <em>flags</em> is a combination of the
+<code class="docutils literal notranslate"><span class="pre">U_*</span></code> constants, for example <code class="docutils literal notranslate"><span class="pre">U_URLDECODE</span></code>. Errors other than an absent
+part raise <code class="docutils literal notranslate"><span class="pre">pycurl.error</span></code>.</p>
+<p>Corresponds to <a class="reference external" href="https://curl.se/libcurl/c/curl_url_get.html">curl_url_get</a> in libcurl.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycurl.CurlUrl.setpart">
+<span class="sig-name descname"><span class="pre">setpart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pycurl.CurlUrl.setpart" title="Link to this definition">¶</a></dt>
+<dd><p>Set one URL component.</p>
+<p><em>part</em> is one of the <code class="docutils literal notranslate"><span class="pre">UPART_*</span></code> constants. <em>value</em> is a string or bytes, or
+<code class="docutils literal notranslate"><span class="pre">None</span></code> to remove the part. <em>flags</em> is a combination of the <code class="docutils literal notranslate"><span class="pre">U_*</span></code> constants,
+for example <code class="docutils literal notranslate"><span class="pre">U_URLENCODE</span></code> or <code class="docutils literal notranslate"><span class="pre">U_APPENDQUERY</span></code>. On failure <code class="docutils literal notranslate"><span class="pre">pycurl.error</span></code>
+is raised.</p>
+<p>Corresponds to <a class="reference external" href="https://curl.se/libcurl/c/curl_url_set.html">curl_url_set</a> in libcurl.</p>
+</dd></dl>
+
+<p>CurlUrl objects have the following attributes:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycurl.CurlUrl.url">
+<span class="sig-name descname"><span class="pre">url</span></span><a class="headerlink" href="#pycurl.CurlUrl.url" title="Link to this definition">¶</a></dt>
+<dd><p>The full URL as a string, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if it is incomplete. Corresponds to
+<code class="docutils literal notranslate"><span class="pre">CURLUPART_URL</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycurl.CurlUrl.scheme">
+<span class="sig-name descname"><span class="pre">scheme</span></span><a class="headerlink" href="#pycurl.CurlUrl.scheme" title="Link to this definition">¶</a></dt>
+<dd><p>The URL scheme, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if the URL has no scheme. Corresponds to
+<code class="docutils literal notranslate"><span class="pre">CURLUPART_SCHEME</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycurl.CurlUrl.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#pycurl.CurlUrl.user" title="Link to this definition">¶</a></dt>
+<dd><p>The user name from the URL userinfo, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if not set. Corresponds to
+<code class="docutils literal notranslate"><span class="pre">CURLUPART_USER</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycurl.CurlUrl.password">
+<span class="sig-name descname"><span class="pre">password</span></span><a class="headerlink" href="#pycurl.CurlUrl.password" title="Link to this definition">¶</a></dt>
+<dd><p>The password from the URL userinfo, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if not set. Corresponds to
+<code class="docutils literal notranslate"><span class="pre">CURLUPART_PASSWORD</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycurl.CurlUrl.options">
+<span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#pycurl.CurlUrl.options" title="Link to this definition">¶</a></dt>
+<dd><p>The options from the URL userinfo, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if not set. Corresponds to
+<code class="docutils literal notranslate"><span class="pre">CURLUPART_OPTIONS</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycurl.CurlUrl.host">
+<span class="sig-name descname"><span class="pre">host</span></span><a class="headerlink" href="#pycurl.CurlUrl.host" title="Link to this definition">¶</a></dt>
+<dd><p>The host name, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if the URL has no host. An IPv6 address is returned
+in brackets, as it appears in the URL. Corresponds to <code class="docutils literal notranslate"><span class="pre">CURLUPART_HOST</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycurl.CurlUrl.port">
+<span class="sig-name descname"><span class="pre">port</span></span><a class="headerlink" href="#pycurl.CurlUrl.port" title="Link to this definition">¶</a></dt>
+<dd><p>The port as a string, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if the URL has no port. Assigning an int is
+also accepted. Corresponds to <code class="docutils literal notranslate"><span class="pre">CURLUPART_PORT</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycurl.CurlUrl.path">
+<span class="sig-name descname"><span class="pre">path</span></span><a class="headerlink" href="#pycurl.CurlUrl.path" title="Link to this definition">¶</a></dt>
+<dd><p>The URL path, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if not set. Corresponds to <code class="docutils literal notranslate"><span class="pre">CURLUPART_PATH</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycurl.CurlUrl.query">
+<span class="sig-name descname"><span class="pre">query</span></span><a class="headerlink" href="#pycurl.CurlUrl.query" title="Link to this definition">¶</a></dt>
+<dd><p>The query string, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if the URL has no query. Corresponds to
+<code class="docutils literal notranslate"><span class="pre">CURLUPART_QUERY</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycurl.CurlUrl.fragment">
+<span class="sig-name descname"><span class="pre">fragment</span></span><a class="headerlink" href="#pycurl.CurlUrl.fragment" title="Link to this definition">¶</a></dt>
+<dd><p>The fragment, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if the URL has no fragment. Corresponds to
+<code class="docutils literal notranslate"><span class="pre">CURLUPART_FRAGMENT</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycurl.CurlUrl.zoneid">
+<span class="sig-name descname"><span class="pre">zoneid</span></span><a class="headerlink" href="#pycurl.CurlUrl.zoneid" title="Link to this definition">¶</a></dt>
+<dd><p>The IPv6 zone id, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if not set. Corresponds to <code class="docutils literal notranslate"><span class="pre">CURLUPART_ZONEID</span></code>.
+Requires libcurl 7.65.0 or later.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>A <code class="docutils literal notranslate"><span class="pre">CurlUrl</span></code> can drive a transfer when passed to a <a class="reference internal" href="curlobject.html#curlobject"><span class="std std-ref">Curl object</span></a> through the <code class="docutils literal notranslate"><span class="pre">CURLU</span></code> option, which requires libcurl 7.63.0 or
+later:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">pycurl</span><span class="o">.</span><span class="n">CurlUrl</span><span class="p">(</span><span class="s2">&quot;https://example.com/&quot;</span><span class="p">)</span>
+<span class="n">curl</span><span class="o">.</span><span class="n">setopt</span><span class="p">(</span><span class="n">pycurl</span><span class="o">.</span><span class="n">CURLU</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>libcurl reads the handle for each transfer, so a <code class="docutils literal notranslate"><span class="pre">CurlUrl</span></code> updated between
+transfers takes effect on the next one. The <code class="docutils literal notranslate"><span class="pre">Curl</span></code> object keeps the <code class="docutils literal notranslate"><span class="pre">CurlUrl</span></code>
+alive while the option is set. Corresponds to <a class="reference external" href="https://curl.se/libcurl/c/CURLOPT_CURLU.html">CURLOPT_CURLU</a> in libcurl.</p>
+<p>See <a class="reference external" href="https://curl.se/libcurl/c/libcurl-url.html">libcurl-url</a> for an overview of the libcurl URL API.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">CurlUrl Object</a><ul>
+<li><a class="reference internal" href="#pycurl.CurlUrl"><code class="docutils literal notranslate"><span class="pre">CurlUrl</span></code></a><ul>
+<li><a class="reference internal" href="#pycurl.CurlUrl.getpart"><code class="docutils literal notranslate"><span class="pre">CurlUrl.getpart()</span></code></a></li>
+<li><a class="reference internal" href="#pycurl.CurlUrl.setpart"><code class="docutils literal notranslate"><span class="pre">CurlUrl.setpart()</span></code></a></li>
+<li><a class="reference internal" href="#pycurl.CurlUrl.url"><code class="docutils literal notranslate"><span class="pre">CurlUrl.url</span></code></a></li>
+<li><a class="reference internal" href="#pycurl.CurlUrl.scheme"><code class="docutils literal notranslate"><span class="pre">CurlUrl.scheme</span></code></a></li>
+<li><a class="reference internal" href="#pycurl.CurlUrl.user"><code class="docutils literal notranslate"><span class="pre">CurlUrl.user</span></code></a></li>
+<li><a class="reference internal" href="#pycurl.CurlUrl.password"><code class="docutils literal notranslate"><span class="pre">CurlUrl.password</span></code></a></li>
+<li><a class="reference internal" href="#pycurl.CurlUrl.options"><code class="docutils literal notranslate"><span class="pre">CurlUrl.options</span></code></a></li>
+<li><a class="reference internal" href="#pycurl.CurlUrl.host"><code class="docutils literal notranslate"><span class="pre">CurlUrl.host</span></code></a></li>
+<li><a class="reference internal" href="#pycurl.CurlUrl.port"><code class="docutils literal notranslate"><span class="pre">CurlUrl.port</span></code></a></li>
+<li><a class="reference internal" href="#pycurl.CurlUrl.path"><code class="docutils literal notranslate"><span class="pre">CurlUrl.path</span></code></a></li>
+<li><a class="reference internal" href="#pycurl.CurlUrl.query"><code class="docutils literal notranslate"><span class="pre">CurlUrl.query</span></code></a></li>
+<li><a class="reference internal" href="#pycurl.CurlUrl.fragment"><code class="docutils literal notranslate"><span class="pre">CurlUrl.fragment</span></code></a></li>
+<li><a class="reference internal" href="#pycurl.CurlUrl.zoneid"><code class="docutils literal notranslate"><span class="pre">CurlUrl.zoneid</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="curlshareobject.html"
+                          title="previous chapter">CurlShare Object</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="mime.html"
+                          title="next chapter">CurlMime Objects</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/curlurlobject.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mime.html" title="CurlMime Objects"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="curlshareobject.html" title="CurlShare Object"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PycURL 7.48.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">CurlUrl Object</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2001-2022 Kjetil Jacobsen, Markus F.X.J. Oberhumer, Oleg Pudeyev.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    </div>
+  </body>
+</html>
