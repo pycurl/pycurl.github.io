@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Page not found</title>
+<script>
+// Docs for old releases are no longer published; send them to the same page in latest.
+var m = location.pathname.match(/^\/docs\/(\d[^\/]*)(?:\/(.*))?$/);
+if (m) {
+  location.replace('/docs/latest/' + (m[2] || '') + location.search + location.hash);
+}
+</script>
+</head>
+
+<body>
+<h1>Page not found</h1>
+
+<p><a href="/">PycURL home page</a></p>
+
+</body>
+</html>

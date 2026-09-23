@@ -1,0 +1,79 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [ gh-pages ]
+  schedule:
+  # Picks up new dev docs from pycurl master.
+  - cron: '17 6 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      actions: read
+    steps:
+    - uses: actions/checkout@v7
+    - name: Set up Python
+      uses: actions/setup-python@v7
+      with:
+        python-version: "3.14"
+    - name: Install dependencies
+      run: pip install jinja2
+    - name: Render pages
+      run: python transform.py _site
+    - name: Fetch release docs
+      run: |
+        version=$(python -c "import tomllib; print(tomllib.load(open('release.toml', 'rb'))['version'])")
+        curl -fsSL -o release-docs.tar.gz \
+          "https://github.com/pycurl/pycurl/releases/download/v$version/pycurl-$version-docs.tar.gz"
+        mkdir -p _site/docs/latest
+        tar -xzf release-docs.tar.gz --strip-components=1 -C _site/docs/latest
+    - name: Find latest master docs run
+      id: dev-run
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        run_id=$(gh run list --repo pycurl/pycurl --workflow docs.yml \
+          --branch master --event push --status success --limit 1 \
+          --json databaseId --jq '.[0].databaseId')
+        test -n "$run_id"
+        echo "run-id=$run_id" >> "$GITHUB_OUTPUT"
+    - name: Download dev docs
+      uses: actions/download-artifact@v8
+      with:
+        repository: pycurl/pycurl
+        run-id: ${{ steps.dev-run.outputs.run-id }}
+        github-token: ${{ github.token }}
+        pattern: pycurl-*-docs.tar.gz
+        path: dev-docs
+    - name: Extract dev docs
+      run: |
+        set -- $(find dev-docs -name 'pycurl-*-docs.tar.gz')
+        test $# = 1
+        mkdir -p _site/docs/dev
+        tar -xzf "$1" --strip-components=1 -C _site/docs/dev
+    - name: Upload site
+      uses: actions/upload-pages-artifact@v5
+      with:
+        path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v5
